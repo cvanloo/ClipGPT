@@ -15,12 +15,14 @@ namespace ClipGPT
 		{
 			DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Bearer", Resources.ApiKey)}
 		};
-		private const string RequestUri = "https://api.openai.com/v1/completions";
+
+		private const string REQUEST_URI = "https://api.openai.com/v1/completions";
 
 		private class PromptDto
 		{
 			[JsonPropertyName("model")]
 			public string Model { get; set; }
+
 			[JsonPropertyName("prompt")]
 			public string Prompt { get; set; }
 
@@ -43,6 +45,7 @@ namespace ClipGPT
 			{
 				[JsonPropertyName("text")]
 				public string Text { get; set; }
+
 				[JsonPropertyName("finish_reason")]
 				public string FinishReason { get; set; }
 			}
@@ -55,7 +58,7 @@ namespace ClipGPT
 		{
 			var jsonBody = JsonSerializer.Serialize(new PromptDto("text-davinci-003", prompt));
 			var contents = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-			var httpResponse = await client.PostAsync(RequestUri, contents);
+			var httpResponse = await client.PostAsync(REQUEST_URI, contents);
 			var responseJson = await httpResponse.Content.ReadAsStringAsync();
 			var response = JsonSerializer.Deserialize<PromptResponseDto>(responseJson);
 			

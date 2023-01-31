@@ -20,13 +20,13 @@ namespace ClipGPT
 		[DllImport("User32.dll", CharSet = CharSet.Auto)]
 		public static extern IntPtr GetClipboardOwner();
 		
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		internal static extern bool OpenClipboard(IntPtr hWndNewOwner);
 
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		internal static extern bool CloseClipboard();
 
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		internal static extern bool SetClipboardData(uint uFormat, IntPtr data);
 
 		private const int WM_CLIPBOARDUPDATE = 0x031D;
@@ -41,15 +41,6 @@ namespace ClipGPT
 			var result = await _askGpt.AskPrompt(prompt);
 			Clipboard.SetText(result);
 			AddClipboardFormatListener(this.Handle);
-			//OpenClipboard(Handle);
-			//byte[] strBytes = Encoding.Unicode.GetBytes(result);
-			//IntPtr hglobal = Marshal.AllocHGlobal(strBytes.Length);
-			//Marshal.Copy(strBytes, 0, hglobal, strBytes.Length);
-			//OpenClipboard(IntPtr.Zero);
-			//EmptyClipboard();
-			//SetClipboardData(FORMAT_UNICODE, hglobal);
-			//CloseClipboard();
-			//Marshal.FreeHGlobal(hglobal);
 		}
 
 		protected override void WndProc(ref Message m)
@@ -57,22 +48,16 @@ namespace ClipGPT
 			switch (m.Msg)
 			{
 				case WM_CLIPBOARDUPDATE:
-					//var owner = GetClipboardOwner();
-					//if (owner == Handle)
-					//	goto default;
-					
 					var iData = Clipboard.GetDataObject();
 					if (iData != null && iData.GetDataPresent(DataFormats.Text))
 					{
 						var data = (string) iData.GetData(DataFormats.Text);
 
-						if (data == _lastRequest)
+						if (data != _lastRequest)
 						{
-							goto default;
+							_lastRequest = data;
+							DoRequest(data);
 						}
-						_lastRequest = data;
-
-						DoRequest(data);
 					}
 					break;
 				default:
