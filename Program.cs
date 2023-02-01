@@ -1,22 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace ClipGPT
 {
-	static class Program
+	internal static class Program
 	{
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		internal static void Main()
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new TrayApplicationContext());
+
+			string apiKey;
+			try
+			{
+				apiKey = ConfigurationManager.AppSettings["ApiKey"];
+			}
+			catch (ConfigurationErrorsException ex)
+			{
+				Console.Error.WriteLine(ex);
+				return;
+			}
+			
+			IAskGpt askGpt = new AskGpt(apiKey);
+			IClipboardListener listener = new ClipboardFormatListener();
+			
+			Application.Run(new TrayApplicationContext(listener, askGpt));
 		}
 	}
 }
