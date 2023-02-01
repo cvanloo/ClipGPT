@@ -58,7 +58,7 @@ namespace ClipGPT
 					break;
 			}
 		}
-
+		
 		private void OnClipboardUpdated(ClipboardUpdatedEventArgs e)
 		{
 			ClipboardUpdated?.Invoke(this, e);

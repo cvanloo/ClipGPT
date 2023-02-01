@@ -138,5 +138,11 @@
   <ItemGroup>
     <None Include="Help.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Secrets\secrets.xml">
+      <Link>secrets.xml</Link>
+    </Content>
+    <Content Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
