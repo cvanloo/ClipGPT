@@ -37,10 +37,8 @@ namespace ClipGPT
 		
 		private async void DoRequest(object sender, ClipboardUpdatedEventArgs e)
 		{
-			_clipboardListener.Deregister();
 			var result = await _askGpt.Prompt(e.Data);
-			Clipboard.SetText(result);
-			_clipboardListener.Register();
+			_clipboardListener.CopySafe(result);
 		}
 	}
 }

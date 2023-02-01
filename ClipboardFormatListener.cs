@@ -75,5 +75,12 @@ namespace ClipGPT
 		{
 			RemoveClipboardFormatListener(Handle);
 		}
+
+		public void CopySafe(string data)
+		{
+			RemoveClipboardFormatListener(Handle);
+			Clipboard.SetText(data);
+			AddClipboardFormatListener(Handle);
+		}
 	}
 }
