@@ -70,6 +70,15 @@ namespace ClipGPT.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClipGPT.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/completions.
         /// </summary>
         internal static string PromptRequestUri {

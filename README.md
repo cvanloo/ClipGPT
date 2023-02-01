@@ -15,7 +15,7 @@ Your teacher will be clueless...
 
 ## Usage
 
-1. Configure your API key.
+1. Configure your API key. (Optional)
 
    (This command may only work when using WSL.)
 
@@ -35,4 +35,8 @@ Your teacher will be clueless...
 
 3. Run the application `bin/(Debug|Release)/ClipGPT.exe`.
 
-4. To stop the application right-click the tray icon and press &ldquo;Exit&rdquo;.
+4. Click &ldquo;Settings&rdquo; in the tray icon to open the settings window.
+
+   Use it to configure your API key and other options.
+
+5. To stop the application right-click the tray icon and press &ldquo;Exit&rdquo;.

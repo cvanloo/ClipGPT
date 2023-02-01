@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Threading;
+using ClipGPT.Properties;
 
 namespace ClipGPT
 {
@@ -12,24 +14,38 @@ namespace ClipGPT
 		[STAThread]
 		internal static void Main()
 		{
+			// Ensure only ever one instance of this application can run.
+			var mutex = new Mutex(true, Resources.AppName, out var onlyInstance);
+			if (!onlyInstance)
+			{
+				return;
+			}
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			string apiKey;
+			// FIXME: Not sure if this is the idiomatic way to do this...
+			string devApiKey;
 			try
 			{
-				apiKey = ConfigurationManager.AppSettings["ApiKey"];
+				devApiKey = ConfigurationManager.AppSettings["ApiKey"];
 			}
 			catch (ConfigurationErrorsException ex)
 			{
 				Console.Error.WriteLine(ex);
 				return;
 			}
-			
-			IAskGpt askGpt = new AskGpt(apiKey);
+
+			var userSettings = new ApplicationConfig();
+			if (!string.IsNullOrWhiteSpace(devApiKey))
+			{
+				userSettings.ApiKey = devApiKey;
+			}
+			IAskGpt askGpt = new AskGpt(userSettings);
 			IClipboardListener listener = new ClipboardFormatListener();
 			
-			Application.Run(new TrayApplicationContext(listener, askGpt));
+			Application.Run(new TrayApplicationContext(listener, askGpt, userSettings));
+			GC.KeepAlive(mutex);
 		}
 	}
 }

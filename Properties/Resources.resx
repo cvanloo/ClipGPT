@@ -124,4 +124,7 @@
   <data name="PromptRequestUri" xml:space="preserve">
     <value>https://api.openai.com/v1/completions</value>
   </data>
+  <data name="AppName" xml:space="preserve">
+    <value>ClipGPT</value>
+  </data>
 </root>

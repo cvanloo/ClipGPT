@@ -10,29 +10,39 @@ namespace ClipGPT
 {
 	public sealed class AskGpt : IAskGpt
 	{
-		private static string _apiKey;
-		private static readonly HttpClient _client = new HttpClient
-		{
-			DefaultRequestHeaders =
-			{
-				Authorization = new AuthenticationHeaderValue("Bearer", _apiKey)
-			}
-		};
+		private readonly ApplicationConfig _userSettings;
+		private readonly HttpClient _client; 
 
-		public AskGpt(string key)
+		public AskGpt(ApplicationConfig userSettings)
 		{
-			_apiKey = key;
+			_userSettings = userSettings;
+			_userSettings.SettingChanging += (sender, args) =>
+			{
+				if (_client != null && args.SettingName == "ApiKey")
+				{
+					_client.DefaultRequestHeaders.Authorization =
+						new AuthenticationHeaderValue("Bearer", (string) args.NewValue);
+				}
+			};
+			
+			_client = new HttpClient
+			{
+				DefaultRequestHeaders =
+				{
+					Authorization = new AuthenticationHeaderValue("Bearer", _userSettings.ApiKey)
+				}
+			};
 		}
 
 		public async Task<string> Prompt(string prompt)
 		{
-			var jsonBody = JsonSerializer.Serialize(new PromptRequestDto(ModelType.TextDavinci003, prompt));
+			var jsonBody = JsonSerializer.Serialize(new PromptRequestDto(ModelType.TextDavinci003, prompt, _userSettings));
 			var contents = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 			var httpResponse = await _client.PostAsync(Resources.PromptRequestUri, contents);
 			
 			if (httpResponse.IsSuccessStatusCode == false)
 			{
-				return $"ERROR({httpResponse.StatusCode}): {httpResponse.ReasonPhrase}";
+				return $"ERROR ({httpResponse.ReasonPhrase}), Request: {jsonBody}, Key: {_userSettings.ApiKey}";
 			}
 			
 			var responseJson = await httpResponse.Content.ReadAsStringAsync();
