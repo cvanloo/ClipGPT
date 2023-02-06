@@ -25,29 +25,17 @@ Output/mysetup.exe
 
 ## Usage
 
-1. Configure your API key. (Optional - Developer only)
-
-   Create the file `C:\Secrets\secrets.xml` with the contents:
-   ```
-   <root>
-      <secrets ver="1.0">
-         <secret name="ApiKey" value="your-api-key-here"/>
-      </secrets>
-   </root>
-   ```
-   Make sure to fill in your own API key.
-
-2. Use Rider or Visual Studio to compile the project.
+1. Use Rider or Visual Studio to compile the project.
 
    (To do so, first open the solution file `rider ClipGPT.sln`)
 
-3. Run the application `bin/(Debug|Release)/ClipGPT.exe`.
+2. Run the application `bin/(Debug|Release)/ClipGPT.exe`.
 
-4. Click &ldquo;Settings&rdquo; in the tray icon to open the settings window.
+3. Click &ldquo;Settings&rdquo; in the tray icon to open the settings window.
 
    Use it to configure your API key and other options.
 
-5. To stop the application right-click the tray icon and press &ldquo;Exit&rdquo;.
+4. To stop the application right-click the tray icon and press &ldquo;Exit&rdquo;.
 
 ## Known Problems
 
