@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ClipGPT"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "Colin van Loo"
 #define MyAppURL "clipgpt.vanloo.ch"
 #define MyAppExeName "ClipGPT.exe"
@@ -10,7 +10,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{8418F7DC-DAB6-46B3-A158-65FB135E19B6}
+AppId={{99FE20E3-F0DF-46B0-BD05-6A53C6483A99}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -38,6 +38,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Development\clipgpt\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Development\clipgpt\bin\Release\.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Development\clipgpt\bin\Release\ClipGPT.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Development\clipgpt\bin\Release\ClipGPT.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Development\clipgpt\bin\Release\ClipGPT.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Development\clipgpt\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
