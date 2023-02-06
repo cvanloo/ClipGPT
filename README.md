@@ -20,7 +20,7 @@ Your teacher will be clueless...
 Run the installer and follow its instructions.
 
 ```shell
-Output/mysetup.exe
+Output/installer.exe
 ```
 
 ## Usage
