@@ -20,7 +20,7 @@ Your teacher will be clueless...
 Run the installer and follow its instructions.
 
 ```shell
-InnoSetup/Output/mysetup.exe
+Output/mysetup.exe
 ```
 
 ## Usage
