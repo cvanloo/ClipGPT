@@ -10,18 +10,18 @@ namespace ClipGPT
 {
 	public sealed class AskGpt : IAskGpt
 	{
-		private readonly ApplicationConfig _userSettings;
+		private readonly IUserSettings _userSettings;
 		private readonly HttpClient _client; 
 
-		public AskGpt(ApplicationConfig userSettings)
+		public AskGpt(IUserSettings userSettings)
 		{
 			_userSettings = userSettings;
-			_userSettings.SettingChanging += (sender, args) =>
+			_userSettings.PropertyChanged += (sender, args) => 
 			{
-				if (_client != null && args.SettingName == "ApiKey")
+				if (_client != null && args.PropertyName == nameof(_userSettings.ApiKey))
 				{
 					_client.DefaultRequestHeaders.Authorization =
-						new AuthenticationHeaderValue("Bearer", (string) args.NewValue);
+						new AuthenticationHeaderValue("Bearer", _userSettings.ApiKey);
 				}
 			};
 			

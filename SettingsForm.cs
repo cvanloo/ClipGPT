@@ -5,21 +5,19 @@ namespace ClipGPT
 {
 	public partial class SettingsForm : Form
 	{
-		private readonly ApplicationConfig _userSettings;
-		public SettingsForm(ApplicationConfig userSettings)
+		private readonly IUserSettings _userSettings;
+		public SettingsForm(IUserSettings userSettings)
 		{
 			InitializeComponent();
 			_userSettings = userSettings;
-			// FIXME: Sometimes windows form seems to attempt to set a value of '0' which is outside of the valid range,
-			//   therefore throwing an exception.
-			//   It's a mystery to me, why it would do that.
-			trackBarTemperature.DataBindings.Add("Value", _userSettings, "Temperature");
-			numericUpDownMaxTokens.DataBindings.Add("Value", _userSettings, "MaxTokens");
-			textBoxApiKey.DataBindings.Add("Text", _userSettings, "ApiKey");
+			Reload();
 		}
 
 		private void buttonClose_Click(object sender, EventArgs e)
 		{
+			_userSettings.Temperature = trackBarTemperature.Value;
+			_userSettings.MaxTokens = (int) numericUpDownMaxTokens.Value; 
+			_userSettings.ApiKey = textBoxApiKey.Text;
 			_userSettings.Save();
 			Close();
 		}
@@ -27,6 +25,14 @@ namespace ClipGPT
 		private void buttonReset_Click(object sender, EventArgs e)
 		{
 			_userSettings.Reset();
+			Reload();
+		}
+
+		private void Reload()
+		{
+			trackBarTemperature.Value = _userSettings.Temperature;
+			numericUpDownMaxTokens.Value = _userSettings.MaxTokens;
+			textBoxApiKey.Text = _userSettings.ApiKey;
 		}
 	}
 }

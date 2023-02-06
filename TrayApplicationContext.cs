@@ -9,9 +9,9 @@ namespace ClipGPT
 		private readonly NotifyIcon _trayIcon;
 		private readonly IClipboardListener _clipboardListener;
 		private readonly IAskGpt _askGpt;
-		private readonly ApplicationConfig _userSettings;
+		private readonly IUserSettings _userSettings;
 
-		public TrayApplicationContext(IClipboardListener listener, IAskGpt askGpt, ApplicationConfig userSettings)
+		public TrayApplicationContext(IClipboardListener listener, IAskGpt askGpt, IUserSettings userSettings)
 		{
 			_trayIcon = new NotifyIcon
 			{

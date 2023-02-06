@@ -24,7 +24,7 @@ namespace ClipGPT
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			var userSettings = new ApplicationConfig();
+			IUserSettings userSettings = UserSettings.ReadConfig();
 			IAskGpt askGpt = new AskGpt(userSettings);
 			IClipboardListener listener = new ClipboardFormatListener();
 			

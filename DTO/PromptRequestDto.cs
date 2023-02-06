@@ -37,18 +37,12 @@ namespace ClipGPT.DTO
 		public string Prompt { get; set; }
 
 		[JsonPropertyName("max_tokens")]
-		public int MaxTokens { get; set; } = 2048;
+		public int MaxTokens { get; set; }
 
 		[JsonPropertyName("temperature")]
-		public decimal Temperature { get; set; } = new decimal(0.5);
-
-		public PromptRequestDto(ModelType model, string prompt)
-		{
-			Model = model.Value;
-			Prompt = prompt;
-		}
+		public decimal Temperature { get; set; }
 		
-		public PromptRequestDto(ModelType model, string prompt, ApplicationConfig config)
+		public PromptRequestDto(ModelType model, string prompt, IUserSettings config)
 		{
 			Model = model.Value;
 			Prompt = prompt;
@@ -57,8 +51,9 @@ namespace ClipGPT.DTO
 		}
 
 		public PromptRequestDto(ModelType model, string prompt, int maxTokens, decimal temperature)
-			: this(model, prompt)
 		{
+			Model = model.Value;
+			Prompt = prompt;
 			MaxTokens = maxTokens;
 			Temperature = temperature;
 		}

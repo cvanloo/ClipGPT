@@ -100,13 +100,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationConfig.cs" />
+    <Compile Include="UserSettings.cs" />
     <Compile Include="AskGpt.cs" />
     <Compile Include="ClipboardFormatListener.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DTO\PromptRequestDto.cs" />
     <Compile Include="DTO\PromptResponseDto.cs" />
+    <Compile Include="IUserSettings.cs" />
     <Compile Include="IAskGpt.cs" />
     <Compile Include="IClipboardListener.cs" />
     <Compile Include="Program.cs" />
