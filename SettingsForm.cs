@@ -10,6 +10,9 @@ namespace ClipGPT
 		{
 			InitializeComponent();
 			_userSettings = userSettings;
+			// FIXME: Sometimes windows form seems to attempt to set a value of '0' which is outside of the valid range,
+			//   therefore throwing an exception.
+			//   It's a mystery to me, why it would do that.
 			trackBarTemperature.DataBindings.Add("Value", _userSettings, "Temperature");
 			numericUpDownMaxTokens.DataBindings.Add("Value", _userSettings, "MaxTokens");
 			textBoxApiKey.DataBindings.Add("Text", _userSettings, "ApiKey");

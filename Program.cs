@@ -24,27 +24,13 @@ namespace ClipGPT
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			// FIXME: Not sure if this is the idiomatic way to do this...
-			string devApiKey;
-			try
-			{
-				devApiKey = ConfigurationManager.AppSettings["ApiKey"];
-			}
-			catch (ConfigurationErrorsException ex)
-			{
-				Console.Error.WriteLine(ex);
-				return;
-			}
-
 			var userSettings = new ApplicationConfig();
-			if (!string.IsNullOrWhiteSpace(devApiKey))
-			{
-				userSettings.ApiKey = devApiKey;
-			}
 			IAskGpt askGpt = new AskGpt(userSettings);
 			IClipboardListener listener = new ClipboardFormatListener();
 			
 			Application.Run(new TrayApplicationContext(listener, askGpt, userSettings));
+			
+			// Hold on to mutex for as long as the app is running. (Keep this line at the bottom)
 			GC.KeepAlive(mutex);
 		}
 	}

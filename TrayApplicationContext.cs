@@ -41,11 +41,8 @@ namespace ClipGPT
 		
 		private void OnApplicationExitHandler(object sender, EventArgs e)
 		{
-			if (_trayIcon != null)
-			{
-				_trayIcon.Visible = false;
-				_trayIcon.Dispose();
-			}
+			_trayIcon.Visible = false;
+			_trayIcon.Dispose();
 			_clipboardListener.Deregister();
 			_clipboardListener.ClipboardUpdated -= DoRequest;
 		}

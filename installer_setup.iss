@@ -2,15 +2,15 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ClipGPT"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Colin van Loo"
-#define MyAppURL "vanloo.ch"
+#define MyAppURL "clipgpt.vanloo.ch"
 #define MyAppExeName "ClipGPT.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{85CEC984-09C5-45FF-96C5-799B1DEB49D5}
+AppId={{8418F7DC-DAB6-46B3-A158-65FB135E19B6}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -25,7 +25,7 @@ InfoAfterFile=C:\Development\clipgpt\README.md
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=mysetup
+OutputBaseFilename=installer
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
