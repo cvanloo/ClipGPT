@@ -10,8 +10,9 @@ namespace ClipGPT
 		{
 			InitializeComponent();
 			_userSettings = userSettings;
-			Reload();
 		}
+
+		protected override void OnShown(EventArgs e) => Reload();
 
 		private void buttonClose_Click(object sender, EventArgs e)
 		{
