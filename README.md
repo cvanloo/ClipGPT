@@ -11,6 +11,8 @@ Your teacher will be clueless...
 
 ## Showcase
 
+![Showcase](./ClipGPTShowcase.mp4)
+
 ## Prerequisites
 
 - .NET Framework 4.7.2
