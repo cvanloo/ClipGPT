@@ -9,9 +9,9 @@ Your teacher will be clueless...
 - Uses `User32.dll` functions to register a clipboard format listener.
 - Sends any copied text to ChatGPT, places response back into the clipboard.
 
-## Showcase
+## Demo
 
-![Showcase](https://videos.shmalls.pw/w/kvy5Jhb9MAw1rbsbpe85Eq)
+![Demo](https://videos.shmalls.pw/w/kvy5Jhb9MAw1rbsbpe85Eq)
 
 ## Prerequisites
 
