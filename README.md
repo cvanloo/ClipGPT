@@ -11,7 +11,7 @@ Your teacher will be clueless...
 
 ## Showcase
 
-![Showcase](./ClipGPTShowcase.mp4)
+![Showcase](https://videos.shmalls.pw/w/kvy5Jhb9MAw1rbsbpe85Eq)
 
 ## Prerequisites
 
