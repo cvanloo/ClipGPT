@@ -70,12 +70,12 @@ namespace ClipGPT
 			// labelTemperature
 			// 
 			this.labelTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-			this.labelTemperature.Location = new System.Drawing.Point(35, 97);
+			this.labelTemperature.Location = new System.Drawing.Point(30, 97);
 			this.labelTemperature.Name = "labelTemperature";
-			this.labelTemperature.Size = new System.Drawing.Size(98, 23);
+			this.labelTemperature.Size = new System.Drawing.Size(103, 23);
 			this.labelTemperature.TabIndex = 2;
 			this.labelTemperature.Text = "Temperature";
-			this.labelTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// trackBarTemperature
 			// 
@@ -95,7 +95,7 @@ namespace ClipGPT
 			this.labelMaxTokens.Size = new System.Drawing.Size(98, 23);
 			this.labelMaxTokens.TabIndex = 4;
 			this.labelMaxTokens.Text = "MaxTokens";
-			this.labelMaxTokens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelMaxTokens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// labelApiKey
 			// 
@@ -105,7 +105,7 @@ namespace ClipGPT
 			this.labelApiKey.Size = new System.Drawing.Size(98, 23);
 			this.labelApiKey.TabIndex = 5;
 			this.labelApiKey.Text = "ApiKey";
-			this.labelApiKey.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelApiKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// textBoxApiKey
 			// 
@@ -165,7 +165,7 @@ namespace ClipGPT
 			this.Controls.Add(this.labelTitle);
 			this.Controls.Add(this.buttonSaveAndClose);
 			this.Name = "SettingsForm";
-			this.Text = "SettingsForm";
+			this.Text = "Settings - ClipGPT";
 			((System.ComponentModel.ISupportInitialize) (this.trackBarTemperature)).EndInit();
 			((System.ComponentModel.ISupportInitialize) (this.numericUpDownMaxTokens)).EndInit();
 			this.ResumeLayout(false);
