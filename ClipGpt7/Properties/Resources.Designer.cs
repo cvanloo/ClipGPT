@@ -82,9 +82,18 @@ namespace ClipGpt7.Properties {
         /// <summary>
         ///   Looks up a localized string similar to https://api.openai.com/v1/completions.
         /// </summary>
-        internal static string PromptRequestUri {
+        internal static string RequestUriCompletion {
             get {
-                return ResourceManager.GetString("PromptRequestUri", resourceCulture);
+                return ResourceManager.GetString("RequestUriCompletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/chat/completions.
+        /// </summary>
+        internal static string RequestUriChat {
+            get {
+                return ResourceManager.GetString("RequestUriChat", resourceCulture);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace ClipGpt7.Dto;
 
-public class PromptResponse
+public class PromptResponseCompletion
 {
 	public class Choices
 	{

@@ -124,7 +124,10 @@
   <data name="AppName" xml:space="preserve">
     <value>ClipGpt (.NET 7)</value>
   </data>
-  <data name="PromptRequestUri" xml:space="preserve">
+  <data name="RequestUriCompletion" xml:space="preserve">
     <value>https://api.openai.com/v1/completions</value>
+  </data>
+  <data name="RequestUriChat" xml:space="preserve">
+    <value>https://api.openai.com/v1/chat/completions</value>
   </data>
 </root>
