@@ -8,10 +8,10 @@ public class PromptRequestChat
 	{
 		[JsonPropertyName("role")]
 		[JsonConverter(typeof(RoleConverter))]
-		public Role Role { get; init; }
+		public Role? Role { get; init; }
 		
 		[JsonPropertyName("content")]
-		public string Content { get; init; }
+		public string? Content { get; init; }
 	}
 	
 	[JsonPropertyName("model")]

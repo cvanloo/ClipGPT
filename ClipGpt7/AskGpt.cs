@@ -45,7 +45,7 @@ public sealed class AskGpt : IAskGpt
 		};
 	}
 
-	public async Task<string> PromptCompletion(string prompt)
+	private async Task<string> PromptCompletion(string prompt)
 	{
 		var jsonBody = JsonSerializer.Serialize(new PromptRequestCompletion(_languageModel, prompt, _userSettings));
 		var contents = new StringContent(jsonBody, Encoding.UTF8, "application/json");
@@ -53,6 +53,7 @@ public sealed class AskGpt : IAskGpt
 		try
 		{
 			var httpResponse = await _client.PostAsync(Resources.RequestUriCompletion, contents);
+			var responseJson = await httpResponse.Content.ReadAsStringAsync();
 
 			if (httpResponse.IsSuccessStatusCode == false)
 			{
@@ -60,10 +61,10 @@ public sealed class AskGpt : IAskGpt
 					? "Missing/Invalid Key!"
 					: _userSettings.ApiKey[..5] + "***" +
 					  _userSettings.ApiKey[^5..];
-				return $"ERROR ({httpResponse.ReasonPhrase ?? "XXX"}), Request: {jsonBody}, Key: {key}";
+				var errorResponse = JsonSerializer.Deserialize<ErrorContainer>(responseJson);
+				return $"ERROR ({httpResponse.ReasonPhrase ?? "[Empty]"})\nRequest: {jsonBody}\nResponse: {errorResponse?.Error?.Message ?? "[Empty]"}\nKey: {key}";
 			}
 
-			var responseJson = await httpResponse.Content.ReadAsStringAsync();
 			var response = JsonSerializer.Deserialize<PromptResponseCompletion>(responseJson);
 			return response?.ResultChoices?[0].Text ?? "ERROR Faulty Response Body";
 		}
@@ -75,9 +76,13 @@ public sealed class AskGpt : IAskGpt
 		{
 			return $"ERROR: Request timed out, Reason: {ex.Message}";
 		}
+		catch (Exception ex)
+		{
+			return $"UNEXPECTED ERROR: {ex.Message}";
+		}
 	}
 	
-	public async Task<string> PromptChat(string prompt)
+	private async Task<string> PromptChat(string prompt)
 	{
 		_chatContext.Add(new PromptRequestChat.Message {Role = Role.User, Content = prompt});
 		var jsonBody = JsonSerializer.Serialize(new PromptRequestChat(_languageModel, _chatContext, _userSettings));
@@ -86,6 +91,7 @@ public sealed class AskGpt : IAskGpt
 		try
 		{
 			var httpResponse = await _client.PostAsync(Resources.RequestUriChat, contents);
+			var responseJson = await httpResponse.Content.ReadAsStringAsync();
 
 			if (httpResponse.IsSuccessStatusCode == false)
 			{
@@ -93,21 +99,22 @@ public sealed class AskGpt : IAskGpt
 					? "Missing/Invalid Key!"
 					: _userSettings.ApiKey[..5] + "***" +
 					  _userSettings.ApiKey[^5..];
-				return $"ERROR ({httpResponse.ReasonPhrase ?? "XXX"}), Request: {jsonBody}, Key: {key}";
+				var errorResponse = JsonSerializer.Deserialize<ErrorContainer>(responseJson);
+				return
+					$"ERROR ({httpResponse.ReasonPhrase ?? "[Empty]"})\nRequest: {jsonBody}\nResponse: {errorResponse?.Error?.Message ?? "[Empty]"}\nKey: {key}";
 			}
 
-			var responseJson = await httpResponse.Content.ReadAsStringAsync();
 			var response = JsonSerializer.Deserialize<PromptResponseChat>(responseJson);
-			
+
 			var responseMessage = response?.ResultChoices?[0].Response;
 			if (responseMessage == null) return "ERROR Faulty Response Body";
-			
+
 			_chatContext.Add(new PromptRequestChat.Message
 			{
 				Role = responseMessage.Role,
 				Content = responseMessage.Content
 			});
-			return responseMessage.Content;
+			return responseMessage.Content ?? "[Empty]";
 		}
 		catch (HttpRequestException ex)
 		{
@@ -116,7 +123,11 @@ public sealed class AskGpt : IAskGpt
 		catch (TaskCanceledException ex)
 		{
 			return $"ERROR: Request timed out, Reason: {ex.Message}";
-		}	
+		}
+		catch (Exception ex)
+		{
+			return $"UNEXPECTED ERROR: {ex.Message}";
+		}
 	}
 
 	public async Task<string> Prompt(string prompt)

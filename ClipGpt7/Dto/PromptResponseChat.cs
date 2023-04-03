@@ -10,14 +10,14 @@ public class PromptResponseChat
 		{
 			[JsonPropertyName("role")]
 			[JsonConverter(typeof(RoleConverter))]
-			public Role Role { get; init; }
+			public Role? Role { get; init; }
 			
 			[JsonPropertyName("content")]
-			public string Content { get; init; }
+			public string? Content { get; init; }
 		}
 
 		[JsonPropertyName("message")]
-		public Message Response { get; init; }
+		public Message? Response { get; init; }
 
 		[JsonPropertyName("finish_reason")]
 		public string? FinishReason { get; init; }
