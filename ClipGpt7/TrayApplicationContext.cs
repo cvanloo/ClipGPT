@@ -19,9 +19,11 @@ public class TrayApplicationContext : ApplicationContext
 			{
 				Items =
 				{
-					new ToolStripMenuItem("Exit", null, Exit),
+					new ToolStripMenuItem("Clear Context", null, ClearContext),
 					new ToolStripSeparator(),
-					new ToolStripMenuItem("Settings", null, Settings)
+					new ToolStripMenuItem("Settings", null, Settings),
+					new ToolStripSeparator(),
+					new ToolStripMenuItem("Exit", null, Exit),
 				}
 			},
 			Visible = true,
@@ -70,6 +72,8 @@ public class TrayApplicationContext : ApplicationContext
 			_clipboardListener.Register();
 		}
 	}
+
+	private void ClearContext(object? sender, EventArgs args) => _askGpt.ClearContext();
 
 	private static void Exit(object? sender, EventArgs args) => Application.Exit();
 }

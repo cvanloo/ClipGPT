@@ -128,4 +128,6 @@ public sealed class AskGpt : IAskGpt
 			_ => throw new ArgumentOutOfRangeException($"no completion method for {_userSettings.CompletionMethod}")
 		};
 	}
+
+	public void ClearContext() => _chatContext.RemoveRange(1, _chatContext.Count - 1);
 }

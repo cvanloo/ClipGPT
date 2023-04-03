@@ -11,4 +11,9 @@ public interface IAskGpt
 	/// <param name="prompt">The prompt to send to ChatGPT.</param>
 	/// <returns>ChatGPT's answer.</returns>
 	Task<string> Prompt(string prompt);
+
+	/// <summary>
+	/// Clear the chat context.
+	/// </summary>
+	void ClearContext();
 }
