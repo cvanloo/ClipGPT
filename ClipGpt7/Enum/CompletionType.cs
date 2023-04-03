@@ -8,9 +8,14 @@ public enum CompletionType
 
 public sealed class CompletionTypeCombo
 {
+	private CompletionTypeCombo(CompletionType id, string text)
+	{
+		Id = id;
+		Text = text;
+	}
 
-	public CompletionType Id { get; init; }
-	public string Text { get; init; }
+	public CompletionType Id { get; }
+	public string Text { get; }
 
 	/// <summary>
 	/// WinForms uses the `ToString` method to determine the content of the combobox items.
@@ -19,7 +24,7 @@ public sealed class CompletionTypeCombo
 	public override string ToString() => Text;
 	
 	public static CompletionTypeCombo[] DataSource { get; } = {
-		new() {Id = CompletionType.Completion, Text = "Completion (no context)"},
-		new() {Id = CompletionType.Chat, Text = "Chat (with context)"}
+		new(CompletionType.Completion, "Completion (no context)"),
+		new(CompletionType.Chat, "Chat (with context)")
 	};
 }

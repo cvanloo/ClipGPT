@@ -19,8 +19,14 @@ public enum ModelType
 
 public sealed class ModelTypeCombo
 {
-	public ModelType Id { get; init; }
-	public string Text { get; init; }
+	private ModelTypeCombo(ModelType id, string text)
+	{
+		Id = id;
+		Text = text;
+	}
+	
+	public ModelType Id { get; }
+	public string Text { get; }
 
 	/// <summary>
 	/// WinForms uses the `ToString` method to determine the content of the combobox items.
@@ -30,12 +36,12 @@ public sealed class ModelTypeCombo
 
 	private static readonly ModelTypeCombo[] _completionDataSource =
 	{
-		new() {Id = ModelType.TextDavinci003, Text = "text-davinci-003"}
+		new(ModelType.TextDavinci003, "text-davinci-003")
 	};
 
 	private static readonly ModelTypeCombo[] _chatDataSource =
 	{
-		new() {Id = ModelType.Gpt35Turbo, Text = "gpt-3.5-turbo"}
+		new(ModelType.Gpt35Turbo, "gpt-3.5-turbo")
 	};
 
 	public static ModelTypeCombo[] DataSource(CompletionType type)
