@@ -28,9 +28,23 @@ public sealed class ModelTypeCombo
 	/// <returns>The text to display in the combo box item.</returns>
 	public override string ToString() => Text;
 
-	public static ModelTypeCombo[] DataSource => new[]
+	private static readonly ModelTypeCombo[] _completionDataSource =
 	{
-		new ModelTypeCombo {Id = ModelType.TextDavinci003, Text = "text-davinci-003"},
-		new ModelTypeCombo {Id = ModelType.Gpt35Turbo, Text = "gpt-3.5-turbo"}
+		new() {Id = ModelType.TextDavinci003, Text = "text-davinci-003"}
 	};
+
+	private static readonly ModelTypeCombo[] _chatDataSource =
+	{
+		new() {Id = ModelType.Gpt35Turbo, Text = "gpt-3.5-turbo"}
+	};
+
+	public static ModelTypeCombo[] DataSource(CompletionType type)
+	{
+		return type switch
+		{
+			CompletionType.Completion => _completionDataSource,
+			CompletionType.Chat => _chatDataSource,
+			_ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+		};
+	}
 }

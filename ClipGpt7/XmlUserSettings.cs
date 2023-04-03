@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Serialization;
+using ClipGpt7.Enum;
 
 namespace ClipGpt7;
 
@@ -13,11 +14,15 @@ public class XmlUserSettings : IUserSettings
 		public const int Temperature = 5;
 		public const int MaxTokens = 2048;
 		public const string ApiKey = "";
+		public const ModelType LanguageModel = ModelType.Gpt35Turbo;
+		public const CompletionType CompletionMethod = CompletionType.Chat;
 	}
 
 	private int _temperature = Defaults.Temperature;
 	private int _maxTokens = Defaults.MaxTokens;
 	private string _apiKey = Defaults.ApiKey;
+	private ModelType _languageModel = Defaults.LanguageModel;
+	private CompletionType _completionMethod = Defaults.CompletionMethod;
 
 	private static string ConfigPath
 	{
@@ -52,6 +57,20 @@ public class XmlUserSettings : IUserSettings
 		set => SetField(ref _apiKey, value);
 	}
 
+	[XmlElement]
+	public ModelType LanguageModel
+	{
+		get => _languageModel;
+		set => SetField(ref _languageModel, value);
+	}
+
+	[XmlElement]
+	public CompletionType CompletionMethod
+	{
+		get => _completionMethod;
+		set => SetField(ref _completionMethod, value);
+	}
+
 	public void Save()
 	{
 		using var fs = File.Open(ConfigPath, FileMode.Create, FileAccess.Write);
@@ -64,6 +83,8 @@ public class XmlUserSettings : IUserSettings
 		Temperature = Defaults.Temperature;
 		MaxTokens = Defaults.MaxTokens;
 		ApiKey = Defaults.ApiKey;
+		LanguageModel = Defaults.LanguageModel;
+		CompletionMethod = Defaults.CompletionMethod;
 	}
 
 	public static XmlUserSettings ReadConfig()

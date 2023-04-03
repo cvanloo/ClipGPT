@@ -8,6 +8,7 @@ public enum CompletionType
 
 public sealed class CompletionTypeCombo
 {
+
 	public CompletionType Id { get; init; }
 	public string Text { get; init; }
 
@@ -16,8 +17,8 @@ public sealed class CompletionTypeCombo
 	/// </summary>
 	/// <returns>The text to display in the combo box item.</returns>
 	public override string ToString() => Text;
-
-	public static CompletionTypeCombo[] DataSource = {
+	
+	public static CompletionTypeCombo[] DataSource { get; } = {
 		new() {Id = CompletionType.Completion, Text = "Completion (no context)"},
 		new() {Id = CompletionType.Chat, Text = "Chat (with context)"}
 	};

@@ -31,145 +31,207 @@ partial class SettingsForm
 	/// </summary>
 	private void InitializeComponent()
 	{
-		this.buttonSaveAndClose = new System.Windows.Forms.Button();
-		this.labelTitle = new System.Windows.Forms.Label();
-		this.labelTemperature = new System.Windows.Forms.Label();
-		this.trackBarTemperature = new System.Windows.Forms.TrackBar();
-		this.labelMaxTokens = new System.Windows.Forms.Label();
-		this.labelApiKey = new System.Windows.Forms.Label();
-		this.textBoxApiKey = new System.Windows.Forms.TextBox();
-		this.numericUpDownMaxTokens = new System.Windows.Forms.NumericUpDown();
-		this.buttonReset = new System.Windows.Forms.Button();
-		this.labelInfo = new System.Windows.Forms.Label();
-		((System.ComponentModel.ISupportInitialize) (this.trackBarTemperature)).BeginInit();
-		((System.ComponentModel.ISupportInitialize) (this.numericUpDownMaxTokens)).BeginInit();
-		this.SuspendLayout();
+		buttonSaveAndClose = new Button();
+		labelTitle = new Label();
+		labelTemperature = new Label();
+		trackBarTemperature = new TrackBar();
+		labelMaxTokens = new Label();
+		labelApiKey = new Label();
+		textBoxApiKey = new TextBox();
+		numericUpDownMaxTokens = new NumericUpDown();
+		buttonReset = new Button();
+		labelInfo = new Label();
+		labelLanguageModel = new Label();
+		labelCompletionMethod = new Label();
+		comboBoxLanguageModel = new ComboBox();
+		comboBoxCompletionMethod = new ComboBox();
+		((ISupportInitialize)trackBarTemperature).BeginInit();
+		((ISupportInitialize)numericUpDownMaxTokens).BeginInit();
+		SuspendLayout();
 		// 
 		// buttonSaveAndClose
 		// 
-		this.buttonSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-		this.buttonSaveAndClose.Location = new System.Drawing.Point(12, 305);
-		this.buttonSaveAndClose.Name = "buttonSaveAndClose";
-		this.buttonSaveAndClose.Size = new System.Drawing.Size(360, 44);
-		this.buttonSaveAndClose.TabIndex = 0;
-		this.buttonSaveAndClose.Text = "Save and Close";
-		this.buttonSaveAndClose.UseVisualStyleBackColor = true;
-		this.buttonSaveAndClose.Click += new System.EventHandler(this.buttonClose_Click);
+		buttonSaveAndClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+		buttonSaveAndClose.Location = new Point(14, 356);
+		buttonSaveAndClose.Margin = new Padding(4, 3, 4, 3);
+		buttonSaveAndClose.Name = "buttonSaveAndClose";
+		buttonSaveAndClose.Size = new Size(420, 51);
+		buttonSaveAndClose.TabIndex = 0;
+		buttonSaveAndClose.Text = "Save and Close";
+		buttonSaveAndClose.UseVisualStyleBackColor = true;
+		buttonSaveAndClose.Click += buttonClose_Click;
 		// 
 		// labelTitle
 		// 
-		this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-		this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-		this.labelTitle.Location = new System.Drawing.Point(12, 9);
-		this.labelTitle.Name = "labelTitle";
-		this.labelTitle.Size = new System.Drawing.Size(360, 31);
-		this.labelTitle.TabIndex = 1;
-		this.labelTitle.Text = "ClipGPT - Settings";
-		this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		labelTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+		labelTitle.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+		labelTitle.Location = new Point(14, 10);
+		labelTitle.Margin = new Padding(4, 0, 4, 0);
+		labelTitle.Name = "labelTitle";
+		labelTitle.Size = new Size(420, 36);
+		labelTitle.TabIndex = 1;
+		labelTitle.Text = "ClipGPT - Settings";
+		labelTitle.TextAlign = ContentAlignment.MiddleCenter;
 		// 
 		// labelTemperature
 		// 
-		this.labelTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-		this.labelTemperature.Location = new System.Drawing.Point(30, 97);
-		this.labelTemperature.Name = "labelTemperature";
-		this.labelTemperature.Size = new System.Drawing.Size(103, 23);
-		this.labelTemperature.TabIndex = 2;
-		this.labelTemperature.Text = "Temperature";
-		this.labelTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+		labelTemperature.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelTemperature.Location = new Point(33, 231);
+		labelTemperature.Margin = new Padding(4, 0, 4, 0);
+		labelTemperature.Name = "labelTemperature";
+		labelTemperature.Size = new Size(120, 27);
+		labelTemperature.TabIndex = 2;
+		labelTemperature.Text = "Temperature";
+		labelTemperature.TextAlign = ContentAlignment.MiddleRight;
 		// 
 		// trackBarTemperature
 		// 
-		this.trackBarTemperature.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-		this.trackBarTemperature.Location = new System.Drawing.Point(139, 97);
-		this.trackBarTemperature.Minimum = 1;
-		this.trackBarTemperature.Name = "trackBarTemperature";
-		this.trackBarTemperature.Size = new System.Drawing.Size(210, 45);
-		this.trackBarTemperature.TabIndex = 3;
-		this.trackBarTemperature.Value = 1;
+		trackBarTemperature.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		trackBarTemperature.Location = new Point(160, 231);
+		trackBarTemperature.Margin = new Padding(4, 3, 4, 3);
+		trackBarTemperature.Maximum = 20;
+		trackBarTemperature.Minimum = 1;
+		trackBarTemperature.Name = "trackBarTemperature";
+		trackBarTemperature.Size = new Size(245, 45);
+		trackBarTemperature.TabIndex = 3;
+		trackBarTemperature.Value = 10;
 		// 
 		// labelMaxTokens
 		// 
-		this.labelMaxTokens.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-		this.labelMaxTokens.Location = new System.Drawing.Point(35, 148);
-		this.labelMaxTokens.Name = "labelMaxTokens";
-		this.labelMaxTokens.Size = new System.Drawing.Size(98, 23);
-		this.labelMaxTokens.TabIndex = 4;
-		this.labelMaxTokens.Text = "MaxTokens";
-		this.labelMaxTokens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+		labelMaxTokens.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelMaxTokens.Location = new Point(39, 202);
+		labelMaxTokens.Margin = new Padding(4, 0, 4, 0);
+		labelMaxTokens.Name = "labelMaxTokens";
+		labelMaxTokens.Size = new Size(114, 27);
+		labelMaxTokens.TabIndex = 4;
+		labelMaxTokens.Text = "MaxTokens";
+		labelMaxTokens.TextAlign = ContentAlignment.MiddleRight;
 		// 
 		// labelApiKey
 		// 
-		this.labelApiKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-		this.labelApiKey.Location = new System.Drawing.Point(35, 174);
-		this.labelApiKey.Name = "labelApiKey";
-		this.labelApiKey.Size = new System.Drawing.Size(98, 23);
-		this.labelApiKey.TabIndex = 5;
-		this.labelApiKey.Text = "ApiKey";
-		this.labelApiKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+		labelApiKey.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelApiKey.Location = new Point(39, 115);
+		labelApiKey.Margin = new Padding(4, 0, 4, 0);
+		labelApiKey.Name = "labelApiKey";
+		labelApiKey.Size = new Size(114, 27);
+		labelApiKey.TabIndex = 5;
+		labelApiKey.Text = "ApiKey";
+		labelApiKey.TextAlign = ContentAlignment.MiddleRight;
 		// 
 		// textBoxApiKey
 		// 
-		this.textBoxApiKey.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-		this.textBoxApiKey.Location = new System.Drawing.Point(139, 174);
-		this.textBoxApiKey.Name = "textBoxApiKey";
-		this.textBoxApiKey.Size = new System.Drawing.Size(210, 20);
-		this.textBoxApiKey.TabIndex = 6;
+		textBoxApiKey.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		textBoxApiKey.Location = new Point(160, 115);
+		textBoxApiKey.Margin = new Padding(4, 3, 4, 3);
+		textBoxApiKey.Name = "textBoxApiKey";
+		textBoxApiKey.Size = new Size(244, 23);
+		textBoxApiKey.TabIndex = 6;
 		// 
 		// numericUpDownMaxTokens
 		// 
-		this.numericUpDownMaxTokens.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-		this.numericUpDownMaxTokens.Increment = new decimal(new int[] {2, 0, 0, 0});
-		this.numericUpDownMaxTokens.Location = new System.Drawing.Point(139, 148);
-		this.numericUpDownMaxTokens.Maximum = new decimal(new int[] {2048, 0, 0, 0});
-		this.numericUpDownMaxTokens.Minimum = new decimal(new int[] {16, 0, 0, 0});
-		this.numericUpDownMaxTokens.Name = "numericUpDownMaxTokens";
-		this.numericUpDownMaxTokens.Size = new System.Drawing.Size(210, 20);
-		this.numericUpDownMaxTokens.TabIndex = 7;
-		this.numericUpDownMaxTokens.ThousandsSeparator = true;
-		this.numericUpDownMaxTokens.Value = new decimal(new int[] {16, 0, 0, 0});
+		numericUpDownMaxTokens.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		numericUpDownMaxTokens.Increment = new decimal(new int[] { 2, 0, 0, 0 });
+		numericUpDownMaxTokens.Location = new Point(160, 202);
+		numericUpDownMaxTokens.Margin = new Padding(4, 3, 4, 3);
+		numericUpDownMaxTokens.Maximum = new decimal(new int[] { 4096, 0, 0, 0 });
+		numericUpDownMaxTokens.Minimum = new decimal(new int[] { 16, 0, 0, 0 });
+		numericUpDownMaxTokens.Name = "numericUpDownMaxTokens";
+		numericUpDownMaxTokens.Size = new Size(245, 23);
+		numericUpDownMaxTokens.TabIndex = 7;
+		numericUpDownMaxTokens.ThousandsSeparator = true;
+		numericUpDownMaxTokens.Value = new decimal(new int[] { 16, 0, 0, 0 });
 		// 
 		// buttonReset
 		// 
-		this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-		this.buttonReset.Location = new System.Drawing.Point(12, 265);
-		this.buttonReset.Name = "buttonReset";
-		this.buttonReset.Size = new System.Drawing.Size(359, 29);
-		this.buttonReset.TabIndex = 8;
-		this.buttonReset.Text = "Restore Defaults";
-		this.buttonReset.UseVisualStyleBackColor = true;
-		this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+		buttonReset.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+		buttonReset.Location = new Point(14, 310);
+		buttonReset.Margin = new Padding(4, 3, 4, 3);
+		buttonReset.Name = "buttonReset";
+		buttonReset.Size = new Size(419, 33);
+		buttonReset.TabIndex = 8;
+		buttonReset.Text = "Restore Defaults";
+		buttonReset.UseVisualStyleBackColor = true;
+		buttonReset.Click += buttonReset_Click;
 		// 
 		// labelInfo
 		// 
-		this.labelInfo.ForeColor = System.Drawing.Color.Red;
-		this.labelInfo.Location = new System.Drawing.Point(16, 52);
-		this.labelInfo.Name = "labelInfo";
-		this.labelInfo.Size = new System.Drawing.Size(355, 19);
-		this.labelInfo.TabIndex = 9;
-		this.labelInfo.Text = "Clipboard listener is paused while this window is open.";
-		this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		labelInfo.ForeColor = Color.Red;
+		labelInfo.Location = new Point(19, 60);
+		labelInfo.Margin = new Padding(4, 0, 4, 0);
+		labelInfo.Name = "labelInfo";
+		labelInfo.Size = new Size(414, 22);
+		labelInfo.TabIndex = 9;
+		labelInfo.Text = "Clipboard listener is paused while this window is open.";
+		labelInfo.TextAlign = ContentAlignment.MiddleCenter;
+		// 
+		// labelLanguageModel
+		// 
+		labelLanguageModel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelLanguageModel.Location = new Point(4, 171);
+		labelLanguageModel.Margin = new Padding(4, 0, 4, 0);
+		labelLanguageModel.Name = "labelLanguageModel";
+		labelLanguageModel.Size = new Size(148, 27);
+		labelLanguageModel.TabIndex = 10;
+		labelLanguageModel.Text = "Language Model";
+		labelLanguageModel.TextAlign = ContentAlignment.MiddleRight;
+		// 
+		// labelCompletionMethod
+		// 
+		labelCompletionMethod.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelCompletionMethod.Location = new Point(4, 140);
+		labelCompletionMethod.Margin = new Padding(4, 0, 4, 0);
+		labelCompletionMethod.Name = "labelCompletionMethod";
+		labelCompletionMethod.Size = new Size(148, 27);
+		labelCompletionMethod.TabIndex = 11;
+		labelCompletionMethod.Text = "Completion Method";
+		labelCompletionMethod.TextAlign = ContentAlignment.MiddleRight;
+		// 
+		// comboBoxLanguageModel
+		// 
+		comboBoxLanguageModel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		comboBoxLanguageModel.FormattingEnabled = true;
+		comboBoxLanguageModel.Location = new Point(159, 173);
+		comboBoxLanguageModel.Name = "comboBoxLanguageModel";
+		comboBoxLanguageModel.Size = new Size(244, 23);
+		comboBoxLanguageModel.TabIndex = 12;
+		// 
+		// comboBoxCompletionMethod
+		// 
+		comboBoxCompletionMethod.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		comboBoxCompletionMethod.FormattingEnabled = true;
+		comboBoxCompletionMethod.Location = new Point(159, 144);
+		comboBoxCompletionMethod.Name = "comboBoxCompletionMethod";
+		comboBoxCompletionMethod.Size = new Size(244, 23);
+		comboBoxCompletionMethod.TabIndex = 13;
+		comboBoxCompletionMethod.SelectedIndexChanged += comboBoxCompletionMethod_SelectedIndexChanged;
 		// 
 		// SettingsForm
 		// 
-		this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-		this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		this.ClientSize = new System.Drawing.Size(384, 361);
-		this.Controls.Add(this.labelInfo);
-		this.Controls.Add(this.buttonReset);
-		this.Controls.Add(this.numericUpDownMaxTokens);
-		this.Controls.Add(this.textBoxApiKey);
-		this.Controls.Add(this.labelApiKey);
-		this.Controls.Add(this.labelMaxTokens);
-		this.Controls.Add(this.trackBarTemperature);
-		this.Controls.Add(this.labelTemperature);
-		this.Controls.Add(this.labelTitle);
-		this.Controls.Add(this.buttonSaveAndClose);
-		this.Name = "SettingsForm";
-		this.Text = "Settings - ClipGPT";
-		((System.ComponentModel.ISupportInitialize) (this.trackBarTemperature)).EndInit();
-		((System.ComponentModel.ISupportInitialize) (this.numericUpDownMaxTokens)).EndInit();
-		this.ResumeLayout(false);
-		this.PerformLayout();
+		AutoScaleDimensions = new SizeF(7F, 15F);
+		AutoScaleMode = AutoScaleMode.Font;
+		ClientSize = new Size(448, 421);
+		Controls.Add(comboBoxCompletionMethod);
+		Controls.Add(comboBoxLanguageModel);
+		Controls.Add(labelCompletionMethod);
+		Controls.Add(labelLanguageModel);
+		Controls.Add(labelInfo);
+		Controls.Add(buttonReset);
+		Controls.Add(numericUpDownMaxTokens);
+		Controls.Add(textBoxApiKey);
+		Controls.Add(labelApiKey);
+		Controls.Add(labelMaxTokens);
+		Controls.Add(trackBarTemperature);
+		Controls.Add(labelTemperature);
+		Controls.Add(labelTitle);
+		Controls.Add(buttonSaveAndClose);
+		FormBorderStyle = FormBorderStyle.FixedSingle;
+		Margin = new Padding(4, 3, 4, 3);
+		Name = "SettingsForm";
+		Text = "Settings - ClipGPT";
+		((ISupportInitialize)trackBarTemperature).EndInit();
+		((ISupportInitialize)numericUpDownMaxTokens).EndInit();
+		ResumeLayout(false);
+		PerformLayout();
 	}
 
 	private System.Windows.Forms.Label labelInfo;
@@ -191,4 +253,9 @@ partial class SettingsForm
 	private System.Windows.Forms.Button buttonSaveAndClose;
 
 	#endregion
+
+	private Label labelLanguageModel;
+	private Label labelCompletionMethod;
+	private ComboBox comboBoxLanguageModel;
+	private ComboBox comboBoxCompletionMethod;
 }
