@@ -13,7 +13,7 @@ Your teacher will be clueless...
 
 ## Showcase
 
-TODO
+![Showcase](./showcase.mp4)
 
 ## Building
 
