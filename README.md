@@ -13,7 +13,7 @@ Your teacher will be clueless...
 
 ## Showcase
 
-![Showcase](./showcase.mp4)
+![Showcase](./showcase.gif)
 
 ## Building
 
