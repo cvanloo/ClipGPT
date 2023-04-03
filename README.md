@@ -46,7 +46,7 @@ The resulting binary and DLL:s are located in `ClipGpt7\bin\Release\net7.0-windo
 
 ## Installation
 
-TODO!
+See [releases](https://github.com/cvanloo/ClipGPT/releases/latest).
 
 ## Usage
 
