@@ -4,44 +4,60 @@ Your teacher will be clueless...
 
 ## (Anti-) Features
 
-- .NET Framework 4.7.2 (C# 7.3) (**Windows only!**)
+- **Windows only!**
+- .NET 7 (C# 11) | self-contained, single-file EXE
+- WinForms
 - Hides as a little tray icon.
 - Uses `User32.dll` functions to register a clipboard format listener.
 - Sends any copied text to ChatGPT, places response back into the clipboard.
 
 ## Showcase
 
-![Showcase](./ClipGPTShowcase.mp4)
+![Showcase](./showcase.gif)
 
-## Prerequisites
+## Building
 
-- .NET Framework 4.7.2
+The application may be built as a self-contained executable, enabling it to run even on computers that do not have the
+.NET 7 runtime installed.
+
+- Install .NET 7 (Framework & Runtime)
+- From the project root:
+
+    ```bash
+    dotnet publish -c Release \
+                   -r win-x64 \
+                   --self-contained true \
+                   -p:PublishSingleFile=true \
+                   -p:IncludeNativeLibrariesForSelfExtract=true \
+                   -p:PublishReadyToRun=true
+    ```
+  
+    Alternatively for Powershell:
+  ```shell
+  dotnet publish -c Release `
+                 -r win-x64 `
+                 --self-contained true `
+                 -p:PublishSingleFile=true `
+                 -p:IncludeNativeLibrariesForSelfExtract=true `
+                 -p:PublishReadyToRun=true
+  ```
+
+The resulting binary and DLL:s are located in `ClipGpt7\bin\Release\net7.0-windows\win-x64\publish`.
 
 ## Installation
 
-Run the installer and follow its instructions.
-
-```shell
-Output/installer.exe
-```
+TODO!
 
 ## Usage
 
-1. Use Rider or Visual Studio to compile the project.
-
-   (To do so, first open the solution file `rider ClipGPT.sln`)
-
-2. Run the application `bin/(Debug|Release)/ClipGPT.exe`.
-
-3. Click &ldquo;Settings&rdquo; in the tray icon to open the settings window.
-
-   Use it to configure your API key and other options.
-
-4. To stop the application right-click the tray icon and press &ldquo;Exit&rdquo;.
+1. (If you haven't already) Create a ChatGPT account and generate an API token (https://platform.openai.com/account/api-keys).
+2. Start the application `ClipGpt7.exe`
+3. Locate the tray icon with the white question mark on black background.
+4. Right-click → Settings
+5. Paste the API token.
+6. Click "Save and Close"
+7. Now simply **copy** your questions, wait a bit, then **paste** GPTs answer.
 
 ## Known Problems
 
-- Opening the settings window _sometimes_ takes extremely long the first time only.\
-  (Up to a full minute!)
-- Settings: Sometimes an exception is thrown that the invalid value of '0' can't be
-  set in the config, even though we tried to set a (valid) value like '6'.
+- "We are not final because we are infallible, but we are infallible because we are final." -- <cite>Robert Jackson</cite>
