@@ -60,4 +60,6 @@ See [releases](https://github.com/cvanloo/ClipGPT/releases/latest).
 
 ## Known Problems
 
-- "We are not final because we are infallible, but we are infallible because we are final." -- <cite>Robert Jackson</cite>
+- The tokens in the prompt are added to the max_tokens request field. This may be no larger than 4096.
+  Somehow, we need to calculate the tokens in the prompt and make sure, that we don't request a max_token larger than
+  4096 - promp_tokens.
