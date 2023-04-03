@@ -36,16 +36,31 @@ public sealed class AskGpt : IAskGpt
 	{
 		var jsonBody = JsonSerializer.Serialize(new PromptRequest(ModelType.TextDavinci003, prompt, _userSettings));
 		var contents = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-		
-		var httpResponse = await _client.PostAsync(Resources.PromptRequestUri, contents);
 
-		if (httpResponse.IsSuccessStatusCode == false)
+		try
 		{
-			return $"ERROR ({httpResponse.ReasonPhrase ?? "XXX"}), Request: {jsonBody}, Key: {_userSettings.ApiKey[..5]}***";
-		}
+			var httpResponse = await _client.PostAsync(Resources.PromptRequestUri, contents);
 
-		var responseJson = await httpResponse.Content.ReadAsStringAsync();
-		var response = JsonSerializer.Deserialize<PromptResponse>(responseJson);
-		return response?.ResultChoices?[0].Text ?? "ERROR Faulty Response Body";
+			if (httpResponse.IsSuccessStatusCode == false)
+			{
+				var key = _userSettings.ApiKey.Length < 6
+					? "Missing/Invalid Key!"
+					: _userSettings.ApiKey[..5] + "***" +
+					  _userSettings.ApiKey[^5..];
+				return $"ERROR ({httpResponse.ReasonPhrase ?? "XXX"}), Request: {jsonBody}, Key: {key}";
+			}
+
+			var responseJson = await httpResponse.Content.ReadAsStringAsync();
+			var response = JsonSerializer.Deserialize<PromptResponse>(responseJson);
+			return response?.ResultChoices?[0].Text ?? "ERROR Faulty Response Body";
+		}
+		catch (HttpRequestException ex)
+		{
+			return $"ERROR ({ex.StatusCode}): Request failed, Reason: {ex.Message}";
+		}
+		catch (TaskCanceledException ex)
+		{
+			return $"ERROR: Request timed out, Reason: {ex.Message}";
+		}
 	}
 }

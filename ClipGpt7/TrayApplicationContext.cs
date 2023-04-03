@@ -38,10 +38,12 @@ public class TrayApplicationContext : ApplicationContext
 
 	private async void DoRequest(object? sender, ClipboardUpdatedEventArgs args)
 	{
-		if (args?.Data != null)
+		if (args.Data != null)
 		{
+			_trayIcon.Text = "Request started...";
 			var result = await _askGpt.Prompt(args.Data);
 			_clipboardListener.SafeCopy(result);
+			_trayIcon.Text = "Request finished!";
 		}
 	}
 
