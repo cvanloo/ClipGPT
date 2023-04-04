@@ -31,7 +31,9 @@ public class XmlUserSettings : IUserSettings
 	private string _apiKey = Defaults.ApiKey;
 	private ModelType _languageModel = Defaults.LanguageModel;
 	private CompletionType _completionMethod = Defaults.CompletionMethod;
-	private List<string> _savedBehaviours = Defaults.SavedBehaviours.ToList(); // @fixme: overwrite when parsing config file
+	// @note: For some weird reason XmlSerializer will _append_ instead of overwrite the list.
+	//  To avoid duplicate list entries, we cannot initialize the defaults here.
+	private List<string> _savedBehaviours = new();
 	private int _selectedBehaviour = Defaults.SelectedBehaviour;
 
 	private static string ConfigPath
@@ -125,6 +127,13 @@ public class XmlUserSettings : IUserSettings
 			config = deserializer.Deserialize(xmlReader) as XmlUserSettings
 			         ?? throw new Exception("failed to parse configuration");
 		}
+
+		// Fix-up config.
+		// @also: see note regarding `_savedBehaviours` property.
+		if (config._savedBehaviours.Count == 0)
+			config._savedBehaviours = Defaults.SavedBehaviours.ToList();
+		if (config._selectedBehaviour > config._savedBehaviours.Count)
+			config._selectedBehaviour = config._savedBehaviours.Count;
 
 		return config;
 	}
