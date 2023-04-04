@@ -12,7 +12,7 @@ public class XmlUserSettings : IUserSettings
 	private static class Defaults
 	{
 		public const int Temperature = 8;
-		public const int MaxTokens = 16;
+		public const int MaxTokens = 2048;
 		public const string ApiKey = "";
 		public const ModelType LanguageModel = ModelType.Gpt35Turbo;
 		public const CompletionType CompletionMethod = CompletionType.Chat;

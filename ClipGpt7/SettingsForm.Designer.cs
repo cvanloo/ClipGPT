@@ -141,7 +141,7 @@ partial class SettingsForm
 		numericUpDownMaxTokens.Size = new Size(245, 23);
 		numericUpDownMaxTokens.TabIndex = 4;
 		numericUpDownMaxTokens.ThousandsSeparator = true;
-		numericUpDownMaxTokens.Value = new decimal(new int[] { 16, 0, 0, 0 });
+		numericUpDownMaxTokens.Value = new decimal(new int[] { 2048, 0, 0, 0 });
 		// 
 		// buttonReset
 		// 
