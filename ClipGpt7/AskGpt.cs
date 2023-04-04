@@ -165,5 +165,10 @@ public sealed class AskGpt : IAskGpt
 		};
 	}
 
-	public void ClearContext() => _chatContext.RemoveRange(1, _chatContext.Count - 1);
+	public void ClearContext()
+	{
+		_chatContext.Clear();
+		var content = _userSettings.SavedBehaviours[_userSettings.SelectedBehaviour];
+		_chatContext.Add(new PromptRequestChat.Message {Role = Role.System, Content = content});
+	}
 }
