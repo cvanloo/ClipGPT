@@ -20,7 +20,6 @@ internal static class Program
 		IAskGpt askGpt = new AskGpt(userSettings);
 		IClipboardListener clipboardListener = new ClipboardFormatListener();
 
-		//ApplicationConfiguration.Initialize();
 		Application.Run(new TrayApplicationContext(clipboardListener, askGpt, userSettings));
 		
 		// hold on to mutex for as long as app is running (keep this line at the bottom)

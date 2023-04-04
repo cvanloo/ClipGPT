@@ -72,7 +72,7 @@ public sealed class ClipboardFormatListener : Control, IClipboardListener
 
 	public void Deregister() => RemoveClipboardFormatListener(Handle);
 
-	public void SafeCopy(string data)
+	public void CopySafe(string data)
 	{
 		RemoveClipboardFormatListener(Handle);
 		Clipboard.SetText(data);

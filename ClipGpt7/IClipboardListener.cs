@@ -21,7 +21,7 @@ public interface IClipboardListener
 	/// Copy data to the clipboard without having the listener react to it.
 	/// </summary>
 	/// <param name="data">Data to be copied.</param>
-	void SafeCopy(string data);
+	void CopySafe(string data);
 }
 
 public sealed class ClipboardUpdatedEventArgs : EventArgs

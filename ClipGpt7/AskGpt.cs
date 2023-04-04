@@ -54,6 +54,11 @@ public sealed class AskGpt : IAskGpt
 		};
 	}
 
+	/// <summary>
+	/// Do a completion using the Completion method.
+	/// </summary>
+	/// <param name="prompt">Prompt to ask ChatGPT.</param>
+	/// <returns>ChatGPT's answer.</returns>
 	private async Task<string> PromptCompletion(string prompt)
 	{
 		var jsonBody = JsonSerializer.Serialize(new PromptRequestCompletion(_languageModel, prompt, _userSettings));
@@ -91,6 +96,11 @@ public sealed class AskGpt : IAskGpt
 		}
 	}
 	
+	/// <summary>
+	/// Do a completion using the Chat method.
+	/// </summary>
+	/// <param name="prompt">Prompt to ask ChatGPT.</param>
+	/// <returns>ChatGPT's answer.</returns>
 	private async Task<string> PromptChat(string prompt)
 	{
 	retry:
@@ -116,8 +126,7 @@ public sealed class AskGpt : IAskGpt
 					_chatContext.RemoveRange(1, l);
 					goto retry;
 				}
-				return
-					$"ERROR ({httpResponse.ReasonPhrase ?? "[Empty]"})\nRequest: {jsonBody}\nResponse: {errorResponse?.Error?.Message ?? "[Empty]"}\nKey: {key}";
+				return $"ERROR ({httpResponse.ReasonPhrase ?? "[Empty]"})\nRequest: {jsonBody}\nResponse: {errorResponse?.Error?.Message ?? "[Empty]"}\nKey: {key}";
 			}
 
 			var response = JsonSerializer.Deserialize<PromptResponseChat>(responseJson);

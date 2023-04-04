@@ -30,7 +30,7 @@ public partial class SettingsForm : Form
 		_userSettings.ApiKey = textBoxApiKey.Text;
 		_userSettings.LanguageModel = ((ModelTypeCombo)comboBoxLanguageModel.SelectedItem).Id;
 		_userSettings.CompletionMethod = ((CompletionTypeCombo)comboBoxCompletionMethod.SelectedItem).Id;
-		// _userSettings.SavedBehaviours is directly bound to the DataSource ana therefore updates automatically.
+		// _userSettings.SavedBehaviours is directly bound to the DataSource and therefore updates automatically.
 		_userSettings.SelectedBehaviour = comboBoxChatBehaviour.SelectedIndex;
 		_userSettings.Save();
 		Close();

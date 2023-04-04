@@ -10,6 +10,12 @@ public sealed class ModelType
 {
 	private ModelType(string value) => Value = value;
 
+	/// <summary>
+	/// Convert the ModelType enum to its DTO.
+	/// </summary>
+	/// <param name="type">Model descriptor.</param>
+	/// <returns>DTO with the corresponding value set.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">If an invalid ModelType was passed.</exception>
 	public static ModelType FromEnum(Enum.ModelType type)
 	{
 		return type switch
@@ -42,6 +48,9 @@ public sealed class ModelType
 	public override string ToString() => Value;
 }
 
+/// <summary>
+/// JsonConverter for the ModelType DTO.
+/// </summary>
 public sealed class ModelTypeConverter : JsonConverter<ModelType>
 {
 	public override ModelType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

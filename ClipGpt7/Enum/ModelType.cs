@@ -17,6 +17,9 @@ public enum ModelType
 	Gpt35Turbo,
 }
 
+/// <summary>
+/// Adapts a ModelType for a WinForms ComboBox.
+/// </summary>
 public sealed class ModelTypeCombo
 {
 	private ModelTypeCombo(ModelType id, string text)
@@ -44,6 +47,13 @@ public sealed class ModelTypeCombo
 		new(ModelType.Gpt35Turbo, "gpt-3.5-turbo")
 	};
 
+	/// <summary>
+	/// Returns the DataSource for a ComboBox.
+	/// The available options depend on the completion method.
+	/// </summary>
+	/// <param name="type">The completion method to use.</param>
+	/// <returns>DataSource for use in a ComboBox.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">An invalid completion type was passed.</exception>
 	public static ModelTypeCombo[] DataSource(CompletionType type)
 	{
 		return type switch

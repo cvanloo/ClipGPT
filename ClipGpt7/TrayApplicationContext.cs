@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using ClipGpt7.Properties;
+﻿using ClipGpt7.Properties;
 
 namespace ClipGpt7;
 
@@ -44,7 +43,7 @@ public class TrayApplicationContext : ApplicationContext
 		{
 			_trayIcon.Text = "Request started...";
 			var result = await _askGpt.Prompt(args.Data);
-			_clipboardListener.SafeCopy(result);
+			_clipboardListener.CopySafe(result);
 			_trayIcon.Text = "Request finished!";
 		}
 	}

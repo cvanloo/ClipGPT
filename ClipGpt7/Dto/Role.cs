@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace ClipGpt7.Dto;
 
+/// <summary>
+/// Imitates a string enum.
+/// </summary>
 public sealed class Role
 {
 	private Role(string value) => Value = value;
@@ -16,6 +19,9 @@ public sealed class Role
 	public override string ToString() => Value;
 }
 
+/// <summary>
+/// JsonConverter for the Role DTO.
+/// </summary>
 public sealed class RoleConverter : JsonConverter<Role>
 {
 	public override Role Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
