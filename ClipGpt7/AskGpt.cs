@@ -12,9 +12,7 @@ public sealed class AskGpt : IAskGpt
 {
 	private readonly IUserSettings _userSettings;
 	private readonly HttpClient _client;
-
-	private readonly List<PromptRequestChat.Message> _chatContext = new()
-		{new PromptRequestChat.Message {Role = Role.System, Content = "You are a helpful assistant."}};
+	private readonly List<PromptRequestChat.Message> _chatContext;
 	
 	private ModelType _languageModel;
 
@@ -29,6 +27,13 @@ public sealed class AskGpt : IAskGpt
 			}
 		};
 		_languageModel = ModelType.FromEnum(_userSettings.LanguageModel);
+		{
+			var content = _userSettings.SavedBehaviours[_userSettings.SelectedBehaviour];
+			_chatContext = new List<PromptRequestChat.Message>
+			{
+				new() {Role = Role.System, Content = content}
+			};
+		}
 		
 		_userSettings.PropertyChanged += (_, args) =>
 		{
@@ -40,6 +45,10 @@ public sealed class AskGpt : IAskGpt
 					break;
 				case nameof(_userSettings.LanguageModel):
 					_languageModel = ModelType.FromEnum(_userSettings.LanguageModel);
+					break;
+				case nameof(_userSettings.SelectedBehaviour):
+					var content = _userSettings.SavedBehaviours[_userSettings.SelectedBehaviour];
+					_chatContext.Add(new PromptRequestChat.Message {Role = Role.System, Content = content});
 					break;
 			}
 		};
@@ -84,6 +93,7 @@ public sealed class AskGpt : IAskGpt
 	
 	private async Task<string> PromptChat(string prompt)
 	{
+	retry:
 		_chatContext.Add(new PromptRequestChat.Message {Role = Role.User, Content = prompt});
 		var jsonBody = JsonSerializer.Serialize(new PromptRequestChat(_languageModel, _chatContext, _userSettings));
 		var contents = new StringContent(jsonBody, Encoding.UTF8, "application/json");
@@ -100,6 +110,12 @@ public sealed class AskGpt : IAskGpt
 					: _userSettings.ApiKey[..5] + "***" +
 					  _userSettings.ApiKey[^5..];
 				var errorResponse = JsonSerializer.Deserialize<ErrorContainer>(responseJson);
+				if (errorResponse?.Error?.Code == "context_length_exceeded")
+				{
+					var l = Math.Min(5, _chatContext.Count - 1);
+					_chatContext.RemoveRange(1, l);
+					goto retry;
+				}
 				return
 					$"ERROR ({httpResponse.ReasonPhrase ?? "[Empty]"})\nRequest: {jsonBody}\nResponse: {errorResponse?.Error?.Message ?? "[Empty]"}\nKey: {key}";
 			}

@@ -11,11 +11,19 @@ public class XmlUserSettings : IUserSettings
 {
 	private static class Defaults
 	{
-		public const int Temperature = 5;
-		public const int MaxTokens = 2048;
+		public const int Temperature = 8;
+		public const int MaxTokens = 16;
 		public const string ApiKey = "";
 		public const ModelType LanguageModel = ModelType.Gpt35Turbo;
 		public const CompletionType CompletionMethod = CompletionType.Chat;
+
+		public static readonly string[] SavedBehaviours = {
+			"You are a helpful assistant.",
+			"You are a crazy scientist.",
+			"You are playing devil's advocate."
+		};
+
+		public const int SelectedBehaviour = 0;
 	}
 
 	private int _temperature = Defaults.Temperature;
@@ -23,6 +31,8 @@ public class XmlUserSettings : IUserSettings
 	private string _apiKey = Defaults.ApiKey;
 	private ModelType _languageModel = Defaults.LanguageModel;
 	private CompletionType _completionMethod = Defaults.CompletionMethod;
+	private List<string> _savedBehaviours = Defaults.SavedBehaviours.ToList(); // @fixme: overwrite when parsing config file
+	private int _selectedBehaviour = Defaults.SelectedBehaviour;
 
 	private static string ConfigPath
 	{
@@ -71,6 +81,20 @@ public class XmlUserSettings : IUserSettings
 		set => SetField(ref _completionMethod, value);
 	}
 
+	[XmlElement]
+	public List<string> SavedBehaviours
+	{
+		get => _savedBehaviours;
+		set => SetField(ref _savedBehaviours, value);
+	}
+
+	[XmlElement]
+	public int SelectedBehaviour
+	{
+		get => _selectedBehaviour;
+		set => SetField(ref _selectedBehaviour, value);
+	}
+
 	public void Save()
 	{
 		using var fs = File.Open(ConfigPath, FileMode.Create, FileAccess.Write);
@@ -85,6 +109,8 @@ public class XmlUserSettings : IUserSettings
 		ApiKey = Defaults.ApiKey;
 		LanguageModel = Defaults.LanguageModel;
 		CompletionMethod = Defaults.CompletionMethod;
+		SavedBehaviours = Defaults.SavedBehaviours.ToList();
+		SelectedBehaviour = Defaults.SelectedBehaviour;
 	}
 
 	public static XmlUserSettings ReadConfig()

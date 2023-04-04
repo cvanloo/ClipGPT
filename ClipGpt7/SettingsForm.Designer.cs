@@ -45,6 +45,8 @@ partial class SettingsForm
 		labelCompletionMethod = new Label();
 		comboBoxLanguageModel = new ComboBox();
 		comboBoxCompletionMethod = new ComboBox();
+		comboBoxChatBehaviour = new ComboBox();
+		labelChatBehaviour = new Label();
 		((ISupportInitialize)trackBarTemperature).BeginInit();
 		((ISupportInitialize)numericUpDownMaxTokens).BeginInit();
 		SuspendLayout();
@@ -52,11 +54,11 @@ partial class SettingsForm
 		// buttonSaveAndClose
 		// 
 		buttonSaveAndClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-		buttonSaveAndClose.Location = new Point(14, 356);
+		buttonSaveAndClose.Location = new Point(14, 405);
 		buttonSaveAndClose.Margin = new Padding(4, 3, 4, 3);
 		buttonSaveAndClose.Name = "buttonSaveAndClose";
 		buttonSaveAndClose.Size = new Size(420, 51);
-		buttonSaveAndClose.TabIndex = 0;
+		buttonSaveAndClose.TabIndex = 7;
 		buttonSaveAndClose.Text = "Save and Close";
 		buttonSaveAndClose.UseVisualStyleBackColor = true;
 		buttonSaveAndClose.Click += buttonClose_Click;
@@ -69,7 +71,7 @@ partial class SettingsForm
 		labelTitle.Margin = new Padding(4, 0, 4, 0);
 		labelTitle.Name = "labelTitle";
 		labelTitle.Size = new Size(420, 36);
-		labelTitle.TabIndex = 1;
+		labelTitle.TabIndex = 0;
 		labelTitle.Text = "ClipGPT - Settings";
 		labelTitle.TextAlign = ContentAlignment.MiddleCenter;
 		// 
@@ -80,7 +82,7 @@ partial class SettingsForm
 		labelTemperature.Margin = new Padding(4, 0, 4, 0);
 		labelTemperature.Name = "labelTemperature";
 		labelTemperature.Size = new Size(120, 27);
-		labelTemperature.TabIndex = 2;
+		labelTemperature.TabIndex = 102;
 		labelTemperature.Text = "Temperature";
 		labelTemperature.TextAlign = ContentAlignment.MiddleRight;
 		// 
@@ -89,12 +91,12 @@ partial class SettingsForm
 		trackBarTemperature.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 		trackBarTemperature.Location = new Point(160, 231);
 		trackBarTemperature.Margin = new Padding(4, 3, 4, 3);
-		trackBarTemperature.Maximum = 20;
+		trackBarTemperature.Maximum = 16;
 		trackBarTemperature.Minimum = 1;
 		trackBarTemperature.Name = "trackBarTemperature";
 		trackBarTemperature.Size = new Size(245, 45);
-		trackBarTemperature.TabIndex = 3;
-		trackBarTemperature.Value = 10;
+		trackBarTemperature.TabIndex = 5;
+		trackBarTemperature.Value = 8;
 		// 
 		// labelMaxTokens
 		// 
@@ -103,7 +105,7 @@ partial class SettingsForm
 		labelMaxTokens.Margin = new Padding(4, 0, 4, 0);
 		labelMaxTokens.Name = "labelMaxTokens";
 		labelMaxTokens.Size = new Size(114, 27);
-		labelMaxTokens.TabIndex = 4;
+		labelMaxTokens.TabIndex = 103;
 		labelMaxTokens.Text = "MaxTokens";
 		labelMaxTokens.TextAlign = ContentAlignment.MiddleRight;
 		// 
@@ -114,7 +116,7 @@ partial class SettingsForm
 		labelApiKey.Margin = new Padding(4, 0, 4, 0);
 		labelApiKey.Name = "labelApiKey";
 		labelApiKey.Size = new Size(114, 27);
-		labelApiKey.TabIndex = 5;
+		labelApiKey.TabIndex = 106;
 		labelApiKey.Text = "ApiKey";
 		labelApiKey.TextAlign = ContentAlignment.MiddleRight;
 		// 
@@ -125,7 +127,7 @@ partial class SettingsForm
 		textBoxApiKey.Margin = new Padding(4, 3, 4, 3);
 		textBoxApiKey.Name = "textBoxApiKey";
 		textBoxApiKey.Size = new Size(244, 23);
-		textBoxApiKey.TabIndex = 6;
+		textBoxApiKey.TabIndex = 1;
 		// 
 		// numericUpDownMaxTokens
 		// 
@@ -133,18 +135,18 @@ partial class SettingsForm
 		numericUpDownMaxTokens.Increment = new decimal(new int[] { 2, 0, 0, 0 });
 		numericUpDownMaxTokens.Location = new Point(160, 202);
 		numericUpDownMaxTokens.Margin = new Padding(4, 3, 4, 3);
-		numericUpDownMaxTokens.Maximum = new decimal(new int[] { 4096, 0, 0, 0 });
+		numericUpDownMaxTokens.Maximum = new decimal(new int[] { 3840, 0, 0, 0 });
 		numericUpDownMaxTokens.Minimum = new decimal(new int[] { 16, 0, 0, 0 });
 		numericUpDownMaxTokens.Name = "numericUpDownMaxTokens";
 		numericUpDownMaxTokens.Size = new Size(245, 23);
-		numericUpDownMaxTokens.TabIndex = 7;
+		numericUpDownMaxTokens.TabIndex = 4;
 		numericUpDownMaxTokens.ThousandsSeparator = true;
 		numericUpDownMaxTokens.Value = new decimal(new int[] { 16, 0, 0, 0 });
 		// 
 		// buttonReset
 		// 
 		buttonReset.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-		buttonReset.Location = new Point(14, 310);
+		buttonReset.Location = new Point(14, 359);
 		buttonReset.Margin = new Padding(4, 3, 4, 3);
 		buttonReset.Name = "buttonReset";
 		buttonReset.Size = new Size(419, 33);
@@ -160,7 +162,7 @@ partial class SettingsForm
 		labelInfo.Margin = new Padding(4, 0, 4, 0);
 		labelInfo.Name = "labelInfo";
 		labelInfo.Size = new Size(414, 22);
-		labelInfo.TabIndex = 9;
+		labelInfo.TabIndex = 107;
 		labelInfo.Text = "Clipboard listener is paused while this window is open.";
 		labelInfo.TextAlign = ContentAlignment.MiddleCenter;
 		// 
@@ -171,7 +173,7 @@ partial class SettingsForm
 		labelLanguageModel.Margin = new Padding(4, 0, 4, 0);
 		labelLanguageModel.Name = "labelLanguageModel";
 		labelLanguageModel.Size = new Size(148, 27);
-		labelLanguageModel.TabIndex = 10;
+		labelLanguageModel.TabIndex = 104;
 		labelLanguageModel.Text = "Language Model";
 		labelLanguageModel.TextAlign = ContentAlignment.MiddleRight;
 		// 
@@ -182,34 +184,59 @@ partial class SettingsForm
 		labelCompletionMethod.Margin = new Padding(4, 0, 4, 0);
 		labelCompletionMethod.Name = "labelCompletionMethod";
 		labelCompletionMethod.Size = new Size(148, 27);
-		labelCompletionMethod.TabIndex = 11;
+		labelCompletionMethod.TabIndex = 105;
 		labelCompletionMethod.Text = "Completion Method";
 		labelCompletionMethod.TextAlign = ContentAlignment.MiddleRight;
 		// 
 		// comboBoxLanguageModel
 		// 
 		comboBoxLanguageModel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		comboBoxLanguageModel.DropDownStyle = ComboBoxStyle.DropDownList;
 		comboBoxLanguageModel.FormattingEnabled = true;
 		comboBoxLanguageModel.Location = new Point(159, 173);
 		comboBoxLanguageModel.Name = "comboBoxLanguageModel";
 		comboBoxLanguageModel.Size = new Size(244, 23);
-		comboBoxLanguageModel.TabIndex = 12;
+		comboBoxLanguageModel.TabIndex = 3;
 		// 
 		// comboBoxCompletionMethod
 		// 
 		comboBoxCompletionMethod.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		comboBoxCompletionMethod.DropDownStyle = ComboBoxStyle.DropDownList;
 		comboBoxCompletionMethod.FormattingEnabled = true;
 		comboBoxCompletionMethod.Location = new Point(159, 144);
 		comboBoxCompletionMethod.Name = "comboBoxCompletionMethod";
 		comboBoxCompletionMethod.Size = new Size(244, 23);
-		comboBoxCompletionMethod.TabIndex = 13;
+		comboBoxCompletionMethod.TabIndex = 2;
 		comboBoxCompletionMethod.SelectedIndexChanged += comboBoxCompletionMethod_SelectedIndexChanged;
+		// 
+		// comboBoxChatBehaviour
+		// 
+		comboBoxChatBehaviour.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		comboBoxChatBehaviour.FormattingEnabled = true;
+		comboBoxChatBehaviour.Location = new Point(159, 282);
+		comboBoxChatBehaviour.Name = "comboBoxChatBehaviour";
+		comboBoxChatBehaviour.Size = new Size(244, 23);
+		comboBoxChatBehaviour.TabIndex = 6;
+		comboBoxChatBehaviour.KeyDown += comboBoxChatBehaviour_KeyDown;
+		// 
+		// labelChatBehaviour
+		// 
+		labelChatBehaviour.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+		labelChatBehaviour.Location = new Point(4, 280);
+		labelChatBehaviour.Margin = new Padding(4, 0, 4, 0);
+		labelChatBehaviour.Name = "labelChatBehaviour";
+		labelChatBehaviour.Size = new Size(148, 27);
+		labelChatBehaviour.TabIndex = 101;
+		labelChatBehaviour.Text = "Chat Behaviour";
+		labelChatBehaviour.TextAlign = ContentAlignment.MiddleRight;
 		// 
 		// SettingsForm
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
 		AutoScaleMode = AutoScaleMode.Font;
-		ClientSize = new Size(448, 421);
+		ClientSize = new Size(448, 470);
+		Controls.Add(comboBoxChatBehaviour);
+		Controls.Add(labelChatBehaviour);
 		Controls.Add(comboBoxCompletionMethod);
 		Controls.Add(comboBoxLanguageModel);
 		Controls.Add(labelCompletionMethod);
@@ -258,4 +285,6 @@ partial class SettingsForm
 	private Label labelCompletionMethod;
 	private ComboBox comboBoxLanguageModel;
 	private ComboBox comboBoxCompletionMethod;
+	private ComboBox comboBoxChatBehaviour;
+	private Label labelChatBehaviour;
 }

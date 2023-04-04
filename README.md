@@ -63,3 +63,7 @@ See [releases](https://github.com/cvanloo/ClipGPT/releases/latest).
 - The tokens in the prompt are added to the max_tokens request field. This may be no larger than 4096.
   Somehow, we need to calculate the tokens in the prompt and make sure, that we don't request a max_token larger than
   4096 - promp_tokens.
+- To 'lessen' the above problem, we limit the max_tokens to 3840.
+  This leaves 256 for the request. The context still must be cleared every now and then, when using the Chat-Model.
+- We limit the temperature between 0-1.6, although the API would allow up to 2.
+  However, anything above 1.6 seems to produce garbage.

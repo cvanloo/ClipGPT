@@ -12,4 +12,6 @@ public interface IUserSettings : INotifyPropertyChanged
 	string ApiKey { get; set; }
 	ModelType LanguageModel { get; set; }
 	CompletionType CompletionMethod { get; set; }
+	List<string> SavedBehaviours { get; set; }
+	int SelectedBehaviour { get; set; }
 }
