@@ -31,6 +31,7 @@ partial class SettingsForm
 	/// </summary>
 	private void InitializeComponent()
 	{
+		components = new Container();
 		buttonSaveAndClose = new Button();
 		labelTitle = new Label();
 		labelTemperature = new Label();
@@ -47,6 +48,7 @@ partial class SettingsForm
 		comboBoxCompletionMethod = new ComboBox();
 		comboBoxChatBehaviour = new ComboBox();
 		labelChatBehaviour = new Label();
+		toolTipGeneral = new ToolTip(components);
 		((ISupportInitialize)trackBarTemperature).BeginInit();
 		((ISupportInitialize)numericUpDownMaxTokens).BeginInit();
 		SuspendLayout();
@@ -96,6 +98,7 @@ partial class SettingsForm
 		trackBarTemperature.Name = "trackBarTemperature";
 		trackBarTemperature.Size = new Size(245, 45);
 		trackBarTemperature.TabIndex = 5;
+		toolTipGeneral.SetToolTip(trackBarTemperature, "Affects quality of generated results. Most optimal should be around the middle.");
 		trackBarTemperature.Value = 8;
 		// 
 		// labelMaxTokens
@@ -128,6 +131,7 @@ partial class SettingsForm
 		textBoxApiKey.Name = "textBoxApiKey";
 		textBoxApiKey.Size = new Size(244, 23);
 		textBoxApiKey.TabIndex = 1;
+		toolTipGeneral.SetToolTip(textBoxApiKey, "Your API access key.");
 		// 
 		// numericUpDownMaxTokens
 		// 
@@ -141,6 +145,7 @@ partial class SettingsForm
 		numericUpDownMaxTokens.Size = new Size(245, 23);
 		numericUpDownMaxTokens.TabIndex = 4;
 		numericUpDownMaxTokens.ThousandsSeparator = true;
+		toolTipGeneral.SetToolTip(numericUpDownMaxTokens, "Length of response to generate.");
 		numericUpDownMaxTokens.Value = new decimal(new int[] { 2048, 0, 0, 0 });
 		// 
 		// buttonReset
@@ -197,6 +202,7 @@ partial class SettingsForm
 		comboBoxLanguageModel.Name = "comboBoxLanguageModel";
 		comboBoxLanguageModel.Size = new Size(244, 23);
 		comboBoxLanguageModel.TabIndex = 3;
+		toolTipGeneral.SetToolTip(comboBoxLanguageModel, "Language model to use. Note that some models require special access grants.");
 		// 
 		// comboBoxCompletionMethod
 		// 
@@ -207,6 +213,7 @@ partial class SettingsForm
 		comboBoxCompletionMethod.Name = "comboBoxCompletionMethod";
 		comboBoxCompletionMethod.Size = new Size(244, 23);
 		comboBoxCompletionMethod.TabIndex = 2;
+		toolTipGeneral.SetToolTip(comboBoxCompletionMethod, "Chat is more powerful and keeps context of the current chat.");
 		comboBoxCompletionMethod.SelectedIndexChanged += comboBoxCompletionMethod_SelectedIndexChanged;
 		// 
 		// comboBoxChatBehaviour
@@ -217,6 +224,7 @@ partial class SettingsForm
 		comboBoxChatBehaviour.Name = "comboBoxChatBehaviour";
 		comboBoxChatBehaviour.Size = new Size(244, 23);
 		comboBoxChatBehaviour.TabIndex = 6;
+		toolTipGeneral.SetToolTip(comboBoxChatBehaviour, "Applies to the Chat-Method. This can be used to instruct the AI how to behave.\r\nYou can edit the text and press ENTER to add your own.\r\nTo delete an item, simply press the DELETE key.\r\n");
 		comboBoxChatBehaviour.KeyDown += comboBoxChatBehaviour_KeyDown;
 		// 
 		// labelChatBehaviour
@@ -287,4 +295,5 @@ partial class SettingsForm
 	private ComboBox comboBoxCompletionMethod;
 	private ComboBox comboBoxChatBehaviour;
 	private Label labelChatBehaviour;
+	private ToolTip toolTipGeneral;
 }

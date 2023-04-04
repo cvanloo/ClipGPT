@@ -6,7 +6,7 @@ namespace ClipGpt7;
 public partial class SettingsForm : Form
 {
 	private readonly IUserSettings _userSettings;
-	
+
 	private List<string>? _chatBehaviours;
 	private IBindingList? _chatBehavioursData;
 
