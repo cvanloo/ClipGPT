@@ -6,14 +6,16 @@ namespace ClipGpt7;
 public partial class SettingsForm : Form
 {
 	private readonly IUserSettings _userSettings;
+	private readonly IAskGpt _askGpt;
 
 	private List<string>? _chatBehaviours;
 	private IBindingList? _chatBehavioursData;
 
-	public SettingsForm(IUserSettings userSettings)
+	public SettingsForm(IUserSettings userSettings, IAskGpt askGpt)
 	{
 		InitializeComponent();
 		_userSettings = userSettings;
+		_askGpt = askGpt;
 	}
 
 	protected override void OnShown(EventArgs args) => Reload();
@@ -92,5 +94,30 @@ public partial class SettingsForm : Form
 				}
 				break;
 		}
+	}
+
+	private async void btnCheckApiKey_Click(object sender, EventArgs e)
+	{
+		if (!string.IsNullOrWhiteSpace(textBoxApiKey.Text))
+		{
+		retry_auth:
+			var result = await _askGpt.VerifyAuthorization(textBoxApiKey.Text);
+			if (result)
+			{
+				btnCheckApiKey.BackColor = Color.LimeGreen;
+			}
+			else
+			{
+				var choice = MessageBox.Show("Invalid API Key", "Unauthorized", MessageBoxButtons.RetryCancel,
+					MessageBoxIcon.Error);
+				if (choice == DialogResult.Retry) goto retry_auth;
+				// if (choice == DialogResult.Cancel)  do nothing
+			}
+		}
+	}
+
+	private void textBoxApiKey_Click(object sender, EventArgs e)
+	{
+		btnCheckApiKey.BackColor = Color.Empty;
 	}
 }

@@ -96,5 +96,14 @@ namespace ClipGpt7.Properties {
                 return ResourceManager.GetString("RequestUriChat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://api.openai.com/v1/models.
+        /// </summary>
+        internal static string RequestUriModel {
+            get {
+                return ResourceManager.GetString("RequestUriModel", resourceCulture);
+            }
+        }
     }
 }

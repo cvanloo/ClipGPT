@@ -130,4 +130,7 @@
   <data name="RequestUriChat" xml:space="preserve">
     <value>https://api.openai.com/v1/chat/completions</value>
   </data>
+  <data name="RequestUriModel" xml:space="preserve">
+    <value>https://api.openai.com/v1/models</value>
+  </data>
 </root>

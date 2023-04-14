@@ -49,6 +49,7 @@ partial class SettingsForm
 		comboBoxChatBehaviour = new ComboBox();
 		labelChatBehaviour = new Label();
 		toolTipGeneral = new ToolTip(components);
+		btnCheckApiKey = new Button();
 		((ISupportInitialize)trackBarTemperature).BeginInit();
 		((ISupportInitialize)numericUpDownMaxTokens).BeginInit();
 		SuspendLayout();
@@ -129,9 +130,10 @@ partial class SettingsForm
 		textBoxApiKey.Location = new Point(160, 115);
 		textBoxApiKey.Margin = new Padding(4, 3, 4, 3);
 		textBoxApiKey.Name = "textBoxApiKey";
-		textBoxApiKey.Size = new Size(244, 23);
+		textBoxApiKey.Size = new Size(185, 23);
 		textBoxApiKey.TabIndex = 1;
 		toolTipGeneral.SetToolTip(textBoxApiKey, "Your API access key.");
+		textBoxApiKey.Click += textBoxApiKey_Click;
 		// 
 		// numericUpDownMaxTokens
 		// 
@@ -238,11 +240,23 @@ partial class SettingsForm
 		labelChatBehaviour.Text = "Chat Behaviour";
 		labelChatBehaviour.TextAlign = ContentAlignment.MiddleRight;
 		// 
+		// btnCheckApiKey
+		// 
+		btnCheckApiKey.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+		btnCheckApiKey.Location = new Point(352, 116);
+		btnCheckApiKey.Name = "btnCheckApiKey";
+		btnCheckApiKey.Size = new Size(51, 23);
+		btnCheckApiKey.TabIndex = 108;
+		btnCheckApiKey.Text = "Check";
+		btnCheckApiKey.UseVisualStyleBackColor = true;
+		btnCheckApiKey.Click += btnCheckApiKey_Click;
+		// 
 		// SettingsForm
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
 		AutoScaleMode = AutoScaleMode.Font;
 		ClientSize = new Size(448, 470);
+		Controls.Add(btnCheckApiKey);
 		Controls.Add(comboBoxChatBehaviour);
 		Controls.Add(labelChatBehaviour);
 		Controls.Add(comboBoxCompletionMethod);
@@ -296,4 +310,5 @@ partial class SettingsForm
 	private ComboBox comboBoxChatBehaviour;
 	private Label labelChatBehaviour;
 	private ToolTip toolTipGeneral;
+	private Button btnCheckApiKey;
 }

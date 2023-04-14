@@ -55,6 +55,20 @@ public sealed class AskGpt : IAskGpt
 	}
 
 	/// <summary>
+	/// Verify that authentication to the API works.
+	/// </summary>
+	/// <returns>True if authentication was successful.</returns>
+	public async Task<bool> VerifyAuthorization(string? authToken = null)
+	{
+		var request = new HttpRequestMessage(HttpMethod.Get, Resources.RequestUriModel)
+		{
+			Headers = {Authorization = new AuthenticationHeaderValue("Bearer", authToken ?? _userSettings.ApiKey)}
+		};
+		var httpResponse = await _client.SendAsync(request);
+		return httpResponse.IsSuccessStatusCode;
+	}
+
+	/// <summary>
 	/// Do a completion using the Completion method.
 	/// </summary>
 	/// <param name="prompt">Prompt to ask ChatGPT.</param>

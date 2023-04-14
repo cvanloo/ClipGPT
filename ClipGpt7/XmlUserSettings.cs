@@ -20,7 +20,8 @@ public class XmlUserSettings : IUserSettings
 		public static readonly string[] SavedBehaviours = {
 			"You are a helpful assistant.",
 			"You are a crazy scientist.",
-			"You are playing devil's advocate."
+			"You are playing devil's advocate.",
+			"You are in a role-play, pretending to be General Grievous."
 		};
 
 		public const int SelectedBehaviour = 0;

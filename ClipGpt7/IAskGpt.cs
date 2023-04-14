@@ -6,6 +6,12 @@
 public interface IAskGpt
 {
 	/// <summary>
+	/// Verify that authentication to the API works.
+	/// </summary>
+	/// <returns>True if authentication was successful.</returns>
+	Task<bool> VerifyAuthorization(string? authToken = null);
+	
+	/// <summary>
 	/// Ask ChatGPT something.
 	/// </summary>
 	/// <param name="prompt">The prompt to send to ChatGPT.</param>

@@ -8,6 +8,7 @@ public class TrayApplicationContext : ApplicationContext
 	private readonly IClipboardListener _clipboardListener;
 	private readonly IAskGpt _askGpt;
 	private readonly IUserSettings _userSettings;
+	private readonly SettingsForm _settingsForm;
 
 	public TrayApplicationContext(IClipboardListener clipboardListener, IAskGpt askGpt, IUserSettings userSettings)
 	{
@@ -35,6 +36,8 @@ public class TrayApplicationContext : ApplicationContext
 		_userSettings = userSettings;
 		_clipboardListener.ClipboardUpdated += DoRequest;
 		_clipboardListener.Register();
+
+		_settingsForm = new SettingsForm(_userSettings, _askGpt);
 	}
 
 	private async void DoRequest(object? sender, ClipboardUpdatedEventArgs args)
@@ -58,16 +61,15 @@ public class TrayApplicationContext : ApplicationContext
 
 	private void Settings(object? sender, EventArgs args)
 	{
-		var settingsForm = new SettingsForm(_userSettings);
-		if (settingsForm.InvokeRequired)
+		if (_settingsForm.InvokeRequired)
 		{
 			var action = new Action(() => Settings(sender, args));
-			settingsForm.Invoke(action);
+			_settingsForm.Invoke(action);
 		}
 		else
 		{
 			_clipboardListener.Deregister();
-			settingsForm.ShowDialog();
+			_settingsForm.ShowDialog();
 			_clipboardListener.Register();
 		}
 	}
